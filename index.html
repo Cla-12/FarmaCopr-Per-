@@ -24,12 +24,11 @@
     <input type="checkbox" id="check-confirmacion">
     <input type="checkbox" id="check-recordatorio">
 
-    <!-- ENCABEZADO (Degradado Verde-Blanco + Ícono SVG Cruz Animado) -->
+    <!-- ENCABEZADO -->
     <header>
         <div class="logo">
-            <svg class="cruz-svg" viewBox="0 0 100 100" width="35" height="35">
-                <path d="M35 10 H65 V35 H90 V65 H65 V90 H35 V65 H10 V35 H35 Z" fill="#2e7d32" />
-            </svg>
+            <!-- Imagen de la Cruz Estática -->
+            <img src="img/cruz-logo.jpg" alt="Logo Cruz" class="cruz-img">
             <h1>FarmaSalud Perú</h1>
         </div>
         <nav>
@@ -57,22 +56,22 @@
                 <h3>Nuestros Servicios</h3>
                 <div class="grid-servicios">
                     <div class="servicio-card">
-                        <span class="servicio-icon">💊</span>
+                        <img src="img/orientacion.png" alt="Orientación" class="servicio-icon-img">
                         <h4>Orientación Farmacéutica</h4>
                         <p>Asesoría personalizada sobre la administración, dosis y contraindicaciones de tus medicamentos.</p>
                     </div>
                     <div class="servicio-card">
-                        <span class="servicio-icon">🛵</span>
+                        <img src="img/delivery_domicilio.jpg" alt="Delivery" class="servicio-icon-img">
                         <h4>Delivery a Domicilio</h4>
                         <p>Envío rápido y seguro de tus medicamentos con receta médica hasta la puerta de tu hogar.</p>
                     </div>
                     <div class="servicio-card">
-                        <span class="servicio-icon">⏰</span>
+                        <img src="img/Alerta2.png" alt="Recordatorio" class="servicio-icon-img">
                         <h4>Recordatorio de Tratamiento</h4>
                         <p>Gestión de alertas para renovar tus recetas continuas (disponible en la pestaña Alerta).</p>
                     </div>
                     <div class="servicio-card">
-                        <span class="servicio-icon">🩺</span>
+                        <img src="img/salud.png" alt="Control de Salud" class="servicio-icon-img">
                         <h4>Toma de Presión y Glucosa</h4>
                         <p>Control y seguimiento básico de signos vitales en todas nuestras sedes presenciales.</p>
                     </div>
@@ -80,7 +79,7 @@
             </div>
         </section>
 
-        <!-- 2. SECCIÓN CATÁLOGO (RF-25.1) -->
+        <!-- 2. SECCIÓN CATÁLOGO -->
         <section id="sec-catalogo" class="content-section">
             <h2>Catálogo de Medicamentos</h2>
             
@@ -144,18 +143,18 @@
             </div>
         </section>
 
-        <!-- 3. SECCIÓN DELIVERY (RF-25.2) -->
+        <!-- 3. SECCIÓN DELIVERY -->
         <section id="sec-delivery" class="content-section">
             <h2>Solicitud de Delivery de Medicamentos</h2>
-            <form action="javascript:void(0);">
+            <form action="#">
                 <fieldset>
                     <legend>Datos para el Envío</legend>
 
                     <label for="del-nombre">Nombre Completo:</label>
-                    <input type="text" id="del-nombre" required placeholder="Ej. Ana Torres">
+                    <input type="text" id="del-nombre" required placeholder=>
 
                     <label for="del-direccion">Dirección de Entrega:</label>
-                    <input type="text" id="del-direccion" required placeholder="Av. Los Fresnos 456, Lima">
+                    <input type="text" id="del-direccion" required placeholder=>
 
                     <label for="del-receta">Adjuntar Receta Médica (PDF o Imagen):</label>
                     <input type="file" id="del-receta" accept="image/*,.pdf">
@@ -172,44 +171,14 @@
         <!-- 4. SECCIÓN ALERTA Y RECORDATORIO -->
         <section id="sec-recordatorio" class="content-section">
             <div class="recordatorio-header text-center">
-                <svg class="icono-campana-pulso" viewBox="0 0 24 24" width="55" height="55">
-                    <path fill="#f57c00" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
-                </svg>
+                <!-- Imagen de la Campana Animada -->
+                <img src="img/campana alerta.jpg" alt="Alerta" class="icono-campana-pulso">
                 <h2>Configurar Recordatorio de Receta</h2>
-                <p>Ingresa tus datos a continuación para programar alertas de tus tratamientos continuos.</p>
+                <p>Alertas e información sobre el seguimiento de tus tratamientos continuos.</p>
             </div>
 
-            <form action="javascript:void(0);" class="form-recordatorio">
-                <fieldset>
-                    <legend>Datos del Tratamiento</legend>
-
-                    <label for="rec-nombre">Nombre del Paciente:</label>
-                    <input type="text" id="rec-nombre" required placeholder="Ej. Ana Torres Quispe">
-
-                    <label for="rec-dni">DNI / Documento:</label>
-                    <input type="text" id="rec-dni" required placeholder="Ej. 72849102">
-
-                    <label for="rec-medicamento">Medicamento del Tratamiento Continuo:</label>
-                    <select id="rec-medicamento" class="select-input" required>
-                        <option value="">-- Selecciona un medicamento --</option>
-                        <option value="losartan">Losartán Potásico 50 mg</option>
-                        <option value="amoxicilina">Amoxicilina 500 mg</option>
-                        <option value="ibuprofeno">Ibuprofeno 400 mg</option>
-                        <option value="panadol">Panadol Forte 500 mg</option>
-                    </select>
-
-                    <label for="rec-frecuencia">Frecuencia de Toma:</label>
-                    <input type="text" id="rec-frecuencia" placeholder="Ej. Cada 24 horas (8:00 AM)">
-
-                    <label for="rec-fecha">Fecha de Próxima Renovación:</label>
-                    <input type="date" id="rec-fecha" required>
-
-                    <label for="check-recordatorio" class="btn-primary btn-guardar-alerta">Programar Recordatorio</label>
-                </fieldset>
-            </form>
-
             <div class="mensaje-exito-recordatorio">
-                ✔ <strong>¡Recordatorio registrado!</strong> Te avisaremos cuando sea momento de renovar tu receta.
+                ✔ <strong>¡Recordatorio activado!</strong> Te avisaremos cuando sea momento de renovar tu receta.
             </div>
         </section>
 
@@ -226,23 +195,23 @@
     <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA -->
     <nav class="bottom-nav">
         <label for="tab-inicio" class="nav-btn btn-inicio">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <img src="img/inicio.png" alt="Inicio" class="nav-icon-img">
             <span>Inicio</span>
         </label>
         <label for="tab-catalogo" class="nav-btn btn-catalogo">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+            <img src="img/catalogo.jpg" alt="Catálogo" class="nav-icon-img">
             <span>Catálogo</span>
         </label>
         <label for="tab-delivery" class="nav-btn btn-delivery-tab">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 7h-3V6a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5l2-2V7z"/></svg>
+            <img src="img/delivery.jpg" alt="Delivery" class="nav-icon-img">
             <span>Delivery</span>
         </label>
         <label for="tab-recordatorio" class="nav-btn btn-recordatorio-tab">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+            <img src="img/alerta.png" alt="Alerta" class="nav-icon-img">
             <span>Alerta</span>
         </label>
         <label for="tab-ubicacion" class="nav-btn btn-ubicacion">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <img src="img/sedes.png" alt="Sedes" class="nav-icon-img">
             <span>Sedes</span>
         </label>
     </nav>

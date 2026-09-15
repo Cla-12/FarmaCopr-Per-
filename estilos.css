@@ -12,14 +12,12 @@ body {
     padding-bottom: 70px;
 }
 
-/* Ocultar los radio e inputs invisibles */
-input[type="radio"], #check-confirmacion {
+/* Ocultar inputs radio y checkboxes de control */
+input[type="radio"], #check-confirmacion, #check-recordatorio {
     display: none;
 }
 
-/* ===================================================
-   EFECTO 1: DEGRADADO VERDE-BLANCO EN EL ENCABEZADO
-   =================================================== */
+/* --- ENCABEZADO Y DEGRADADO --- */
 header {
     background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffffff 100%);
     padding: 1rem 2rem;
@@ -35,21 +33,14 @@ header {
     gap: 10px;
 }
 
-/* ===================================================
-   EFECTO 3: ÍCONO SVG DE CRUZ FARMACÉUTICA ANIMADO
-   =================================================== */
-.cruz-svg {
-    animation: girarCruz 8s linear infinite;
+/* CRUZ DE LA CABECERA (ESTÁTICA) */
+.cruz-img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
 }
 
-@keyframes girarCruz {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* ===================================================
-   TRANSICIÓN 3: COLOR EN EL MENÚ
-   =================================================== */
+/* MENÚ SUPERIOR */
 nav ul {
     display: flex;
     list-style: none;
@@ -99,11 +90,16 @@ nav ul label:hover {
 .servicios-container h3 { text-align: center; color: #2e7d32; margin-bottom: 20px; }
 .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
 .servicio-card { background: #f4fbf7; border: 1px solid #c8e6c9; border-radius: 8px; padding: 15px; text-align: center; }
-.servicio-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
 
-/* ===================================================
-   RF-25.1: CATÁLOGO Y FILTROS
-   =================================================== */
+/* ÍCONOS DE SERVICIOS (IMÁGENES) */
+.servicio-icon-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+/* --- CATÁLOGO Y FILTROS --- */
 .filtro-container {
     display: flex;
     flex-wrap: wrap;
@@ -119,10 +115,7 @@ nav ul label:hover {
     border-radius: 4px;
 }
 
-.filtro-botones {
-    display: flex;
-    gap: 5px;
-}
+.filtro-botones { display: flex; gap: 5px; }
 
 .btn-filtro {
     padding: 8px 12px;
@@ -134,7 +127,10 @@ nav ul label:hover {
     transition: background-color 0.3s;
 }
 
-/* Lógica CSS del filtro de categorías */
+/* Lógica de filtrado con CSS */
+#cat-libre:checked ~ .main-container .card-receta { display: none !important; }
+#cat-receta:checked ~ .main-container .card-libre { display: none !important; }
+
 #cat-todas:checked ~ .main-container .btn-cat-todas,
 #cat-libre:checked ~ .main-container .btn-cat-libre,
 #cat-receta:checked ~ .main-container .btn-cat-receta {
@@ -143,29 +139,21 @@ nav ul label:hover {
     font-weight: bold;
 }
 
-#cat-libre:checked ~ .main-container .card-receta { display: none; }
-#cat-receta:checked ~ .main-container .card-libre { display: none; }
-
-/* GRID DEL CATÁLOGO */
+/* TARJETAS DEL CATÁLOGO */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
 }
 
-/* ===================================================
-   EFECTO 2: SOMBRA EN LAS TARJETAS DE MEDICAMENTO
-   TRANSICIÓN 2: RESALTADO EN LAS TARJETAS DEL CATÁLOGO
-   ANIMACIÓN 3: APARICIÓN PROGRESIVA DE RESULTADOS
-   =================================================== */
 .card {
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     padding: 15px;
     background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* EFECTO 2 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* TRANSICIÓN 2 */
-    animation: fadeInUp 0.5s ease forwards; /* ANIMACIÓN 3 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
 .card:hover {
@@ -177,12 +165,13 @@ nav ul label:hover {
 .badge { display: inline-block; padding: 3px 8px; font-size: 0.75rem; border-radius: 3px; font-weight: bold; margin-bottom: 8px; }
 .badge.libre { background-color: #e8f5e9; color: #2e7d32; }
 .badge.receta { background-color: #ffebee; color: #c62828; }
+.stock-tag { font-size: 0.8rem; font-weight: bold; margin: 5px 0; }
+.stock-tag.disponible { color: #2e7d32; }
+.stock-tag.agotado { color: #c62828; }
 .presentation { display: block; font-size: 0.75rem; color: #777; margin-bottom: 4px; }
 .price { font-weight: bold; color: #1b5e20; margin: 8px 0; }
 
-/* ===================================================
-   TRANSICIÓN 1: COLOR EN EL BOTÓN DE DELIVERY
-   =================================================== */
+/* BOTONES PRINCIPALES */
 .btn-card, .btn-delivery, .btn-primary {
     display: inline-block;
     background-color: #2e7d32;
@@ -194,7 +183,7 @@ nav ul label:hover {
     cursor: pointer;
     font-weight: bold;
     text-align: center;
-    transition: background-color 0.4s ease, transform 0.2s ease; /* TRANSICIÓN 1 */
+    transition: background-color 0.4s ease, transform 0.2s ease;
 }
 
 .btn-card:hover, .btn-delivery:hover, .btn-primary:hover {
@@ -202,10 +191,7 @@ nav ul label:hover {
     transform: scale(1.02);
 }
 
-/* ===================================================
-   RF-25.2: FORMULARIO DELIVERY
-   ANIMACIÓN 2: CONFIRMACIÓN ANIMADA
-   =================================================== */
+/* --- FORMULARIO DELIVERY Y CONFIRMACIÓN --- */
 form fieldset {
     border: 1px solid #ddd;
     padding: 15px;
@@ -216,7 +202,11 @@ form fieldset {
 }
 
 form label { font-weight: bold; font-size: 0.9rem; }
-form input[type="text"], form input[type="file"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+form input[type="text"], form input[type="file"], .select-input, form input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
 .mensaje-confirmacion {
     display: none;
@@ -228,10 +218,9 @@ form input[type="text"], form input[type="file"] { padding: 8px; border: 1px sol
     border-radius: 4px;
 }
 
-/* Lógica para mostrar la confirmación animada */
 #check-confirmacion:checked ~ .main-container .mensaje-confirmacion {
     display: block;
-    animation: animarConfirmacion 0.5s ease-out; /* ANIMACIÓN 2 */
+    animation: animarConfirmacion 0.5s ease-out;
 }
 
 @keyframes animarConfirmacion {
@@ -239,18 +228,15 @@ form input[type="text"], form input[type="file"] { padding: 8px; border: 1px sol
     100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ===================================================
-   ANIMACIÓN 1: PULSO EN EL ÍCONO DE CAMPANA/RECORDATORIO
-   =================================================== */
-.recordatorio-box {
-    margin-top: 20px;
-    padding: 20px;
-    background: #fff3e0;
-    border-radius: 8px;
-}
+/* --- SECCIÓN ALERTA Y RECORDATORIO --- */
+.recordatorio-header { margin-bottom: 20px; }
 
+/* IMAGEN CAMPANA CON ANIMACIÓN DE PULSO */
 .icono-campana-pulso {
-    animation: pulsoCampana 1.5s infinite ease-in-out; /* ANIMACIÓN 1 */
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    animation: pulsoCampana 1.5s infinite ease-in-out;
     margin-bottom: 10px;
 }
 
@@ -260,9 +246,41 @@ form input[type="text"], form input[type="file"] { padding: 8px; border: 1px sol
     100% { transform: scale(1); }
 }
 
+.form-recordatorio fieldset {
+    border: 1px solid #ffe082;
+    background-color: #fffde7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn-guardar-alerta {
+    background-color: #f57c00;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-guardar-alerta:hover { background-color: #e65100; }
+
+.mensaje-exito-recordatorio {
+    display: none;
+    max-width: 600px;
+    margin: 15px auto 0 auto;
+    padding: 12px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#check-recordatorio:checked ~ .main-container .mensaje-exito-recordatorio {
+    display: block;
+    animation: animarConfirmacion 0.5s ease-out;
+}
+
 .text-center { text-align: center; }
 
-/* --- BARRA INFERIOR --- */
+/* --- BARRA NAVEGACIÓN INFERIOR FIJA --- */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -291,9 +309,17 @@ form input[type="text"], form input[type="file"] { padding: 8px; border: 1px sol
     transition: color 0.3s;
 }
 
+/* Íconos de la barra inferior */
+.nav-icon-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    margin-bottom: 2px;
+}
+
 .nav-btn:hover { color: #2e7d32; }
 
-/* LÓGICA DE NAVEGACIÓN ENTRE PESTAÑAS */
+/* MOSTRAR Y OCULTAR PESTAÑAS */
 #tab-inicio:checked ~ .main-container #sec-inicio,
 #tab-catalogo:checked ~ .main-container #sec-catalogo,
 #tab-delivery:checked ~ .main-container #sec-delivery,
@@ -322,59 +348,4 @@ footer {
     padding: 15px;
     background-color: #e0e0e0;
     margin-top: 20px;
-}
-/* --- ESTILOS DEL FORMULARIO DE RECORDATORIO --- */
-.form-recordatorio fieldset {
-    border: 1px solid #ffe082;
-    background-color: #fffde7;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.select-input, form input[type="date"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-}
-
-.btn-guardar-alerta {
-    background-color: #f57c00;
-    color: white;
-    margin-top: 10px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.btn-guardar-alerta:hover {
-    background-color: #e65100;
-}
-
-/* Ocultar mensaje por defecto */
-.mensaje-exito-recordatorio {
-    display: none;
-    max-width: 600px;
-    margin: 15px auto 0 auto;
-    padding: 12px;
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    border-radius: 4px;
-    text-align: center;
-}
-
-/* Mostrar mensaje animado al marcar el checkbox */
-#check-recordatorio:checked ~ .main-container .mensaje-exito-recordatorio {
-    display: block;
-    animation: fadeInConfirm 0.4s ease-out;
-}
-
-@keyframes fadeInConfirm {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
